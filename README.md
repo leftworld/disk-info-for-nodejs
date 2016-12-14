@@ -4,7 +4,7 @@ Get disk used ratio
 
 binding.gyp
 
-{
+```{
   'targets':[
   {
     'include_dirs': [
@@ -23,7 +23,7 @@ binding.gyp
   }
  ]
 }
-
+```
 find "v8.h" and "node.h" directory and add to "include_dirs" config
 
 #node-gyp configure
