@@ -1,5 +1,6 @@
 # diskused-for-nodejs
 desc:
+
 Get disk used ratio  
 
 binding.gyp
@@ -30,4 +31,11 @@ node-gyp configure
 node-gyp build
 
 test:
-node test
+node test.js
+
+{ '/': 75, '/var/lib/docker/aufs': 75 }
+
+
+"/" and "/var/lib/docker/aufs" used 75%
+
+
