@@ -13,6 +13,7 @@ using v8::Object;
 using v8::String;
 using v8::Value;
 
+const unsigned long G = 1024  * 1000 * 1000;//1024 * 1024 * 1024;
 void Method(const FunctionCallbackInfo<Value>& args) {
   Isolate* isolate = args.GetIsolate();
   Local<Object> obj = Object::New(isolate);
@@ -60,7 +61,12 @@ void Method(const FunctionCallbackInfo<Value>& args) {
         if (blocks_used + s.f_bavail)
         {
           blocks_percent_used = (blocks_used * 100ULL + (blocks_used + s.f_bavail) / 2 ) / (blocks_used + s.f_bavail) + 1;
-          obj->Set(String::NewFromUtf8(isolate, mount_point), Number::New(isolate, blocks_percent_used));
+          Local<Object> disk = Object::New(isolate);
+          disk->Set(String::NewFromUtf8(isolate, "Size"), Number::New(isolate, s.f_blocks * s.f_bsize / G));
+          disk->Set(String::NewFromUtf8(isolate, "UsedPercent"), Number::New(isolate, blocks_percent_used));
+          disk->Set(String::NewFromUtf8(isolate, "Used"), Number::New(isolate, blocks_used * s.f_bsize / G));
+          disk->Set(String::NewFromUtf8(isolate, "unit"), Number::New(isolate, s.f_bsize));
+          obj->Set(String::NewFromUtf8(isolate, mount_point), disk);
         }
       }
     }

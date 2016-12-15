@@ -1,7 +1,7 @@
-# diskused-for-nodejs
+# disk-info-for-nodejs
 desc:
 
-Get disk used ratio  
+Get disk info  
 
 binding.gyp
 
@@ -33,9 +33,14 @@ node-gyp build
 test:
 node test.js
 
-{ '/': 75, '/var/lib/docker/aufs': 75 }
+{ '/': { Size: 29, UsedPercent: 75, Used: 20, unit: 4096 } }
 
+"/" is disk
 
-"/" and "/var/lib/docker/aufs" used 75%
+"Size" :29G
 
+"usedPercent": 75% 
 
+"Used" : 20G
+
+"unit": block size
