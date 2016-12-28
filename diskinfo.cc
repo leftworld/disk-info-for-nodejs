@@ -58,6 +58,10 @@ void Method(const FunctionCallbackInfo<Value>& args) {
 			{
 				continue;
 			}
+                        if (strcmp(device, "none") == 0 )
+                        {
+                                continue;
+                        }
 
 			if ((s.f_blocks > 0) || !mount_table )
 			{
